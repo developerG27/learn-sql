@@ -1,3 +1,5 @@
+CREATE DATABASE library;
+
 CREATE TABLE IF NOT EXISTS books(
   book_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   author_id INTEGER UNSIGNED,
@@ -48,3 +50,19 @@ INSERT INTO authors(name, nationality) VALUES
 ('Sabrina Paola','IT'),
 ('Katherine Pumayalla','IT'),
 ('Luigi Garni','ES');
+
+
+INSERT INTO `clients`(client_id, name, email, birthdate, gender, active) VALUES
+(1, 'Martha Buitrago', 'marthab@hotmail.com', '1970-12-01', 'F', 1), 
+(2, 'Diana vargas', 'dianav@hotmail.com', '1980-02-15', 'F', 1), 
+(3, 'Ricardo Díaz', 'ricardod@hotmail.com', '1991-04-09', 'M', 1), 
+(4, 'Harvery Torres', 'harveyt@hotmail.com', '1985-08-25', 'M', 1);
+
+
+INSERT INTO books(title, author_id, `year`)
+VALUES('Vuelta al Laberinto de la Soledad', (
+  SELECT author_id FROM authors 
+  WHERE name = 'Octavio Paz'
+  LIMIT 1
+  ),1960
+);
